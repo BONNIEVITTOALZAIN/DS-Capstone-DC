@@ -584,11 +584,11 @@ if page == "overview":
     """, unsafe_allow_html=True)
 
     kpi_data = [
-        ("💰", f"Rp {total_rev_tx:,.0f}".replace(",", "."), "Revenue Transaksi"),
-        ("📈", f"Rp {total_rev_fin:,.0f}".replace(",", "."), "Revenue Keuangan"),
+        ("💰", f"$ {total_rev_tx:,.0f}".replace(",", "."), "Revenue Transaksi"),
+        ("📈", f"$ {total_rev_fin:,.0f}".replace(",", "."), "Revenue Keuangan"),
         ("🧾", f"{total_orders:,}", "Total Invoice"),
         ("📦", f"{total_products:,}", "Produk Unik"),
-        ("🎯", f"Rp {avg_order_value:,.0f}", "Avg per Invoice"),
+        ("🎯", f"$ {avg_order_value:,.0f}", "Avg per Invoice"),
     ]
 
     cols = st.columns(5)
@@ -934,7 +934,7 @@ elif page == "q1":
 
     metric_q1 = [
         (cols[0], f"{len(top20)}", "Produk Top 20%"),
-        (cols[1], f"Rp {top20['sales_amount'].sum():,.0f}".replace(",", "."), "Revenue Mereka"),
+        (cols[1], f"$ {top20['sales_amount'].sum():,.0f}".replace(",", "."), "Revenue"),
         (cols[2], f"{top20['sales_amount'].sum() / product_rev['sales_amount'].sum() * 100:.1f}%", "Share Revenue"),
     ]
 
@@ -966,7 +966,7 @@ elif page == "q1":
                 colorscale=[[0, "#1e3a5f"], [0.5, ACCENT], [1, "#93c5fd"]],
                 line=dict(width=0),
             ),
-            text=[f"Rp {v/1e3:.0f}K" for v in top20.head(15)["sales_amount"]],
+            text=[f"$ {v/1e3:.0f}K" for v in top20.head(15)["sales_amount"]],
             textposition="outside",
             textfont=dict(size=9, color=FONT_COLOR),
         ))
@@ -1047,7 +1047,7 @@ elif page == "q1":
         y=sim_data["Estimasi Sales"],
         marker_color=sim_data["color"],
         marker_line_width=0,
-        text=[f"Rp {v:,.0f}" for v in sim_data["Estimasi Sales"]],
+        text=[f"$ {v:,.0f}" for v in sim_data["Estimasi Sales"]],
         textposition="outside",
         textfont=dict(size=10),
     ))
@@ -1325,8 +1325,8 @@ elif page == "q3":
 
     metric_q3 = [
         (cols[0], f"{len(below_avg)}", "Produk di Bawah Rata-rata"),
-        (cols[1], f"Rp {avg_sales:,.0f}".replace(",", "."), "Rata-rata Penjualan"),
-        (cols[2], f"Rp {below_avg['clearance_discount'].sum():,.0f}".replace(",", "."), "Estimasi Pemulihan"),
+        (cols[1], f"$ {avg_sales:,.0f}".replace(",", "."), "Rata-rata Penjualan"),
+        (cols[2], f"$ {below_avg['clearance_discount'].sum():,.0f}".replace(",", "."), "Estimasi Pemulihan"),
     ]
 
     for col, val, lbl in metric_q3:
@@ -1381,7 +1381,7 @@ elif page == "q3":
             y=[total_before, total_after],
             marker_color=["#475569", ACCENT3],
             marker_line_width=0,
-            text=[f"Rp {v:,.0f}" for v in [total_before, total_after]],
+            text=[f"$ {v:,.0f}" for v in [total_before, total_after]],
             textposition="outside",
             textfont=dict(size=10),
         ))
@@ -1513,7 +1513,7 @@ elif page == "q4":
                 colorscale=[[0, "#1e3a5f"], [1, "#93c5fd"]],
                 line=dict(width=0),
             ),
-            text=[f"Rp {v/1e3:.0f}K" for v in high_rev["sales_amount"]],
+            text=[f"$ {v/1e3:.0f}K" for v in high_rev["sales_amount"]],
             textposition="outside",
             textfont=dict(size=9, color=FONT_COLOR),
         ))
@@ -1759,7 +1759,7 @@ elif page == "q5":
                 line=dict(width=0),
             ),
             text=[
-                f"Rp {v/1e3:.1f}K" if not pd.isna(v) else ""
+                f"$ {v/1e3:.1f}K" if not pd.isna(v) else ""
                 for v in prod_day["sales_amount"]
             ],
             textposition="outside",
