@@ -20,6 +20,20 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
+    .stApp {
+        background-color: #080c14 !important;
+        color: #e2e8f0 !important;
+    }
+
+    .stSelectbox div, .stSlider div, .stDateInput div, .stHeading, p, span, label {
+        color: #e2e8f0 !important;
+    }
+    
+    div[data-baseweb="select"] > div {
+        background-color: #0d1220 !important;
+        color: #e2e8f0 !important;
+    }        
+
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
     html, body, [class*="css"] {
